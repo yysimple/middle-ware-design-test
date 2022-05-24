@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simple.pagination.mapper.UserInfoMapper">
+
+    <resultMap id="userInfoMap" type="com.simple.pagination.domain.UserInfo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,create_time
+    </sql>
+
+    <!--通过ID查询单个用户表-->
+    <select id="findUserInfoById" resultMap="userInfoMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM user_info
+        WHERE id=#{id}
+    </select>
+
+    <!--多条件查询UserInfo列表-->
+    <select id="listUserInfo" resultMap="userInfoMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM user_info
+        WHERE 1=1
+        <if test="id != null">
+            and id=#{id}
+        </if>
+        <if test="name != null">
+            and name=#{name}
+        </if>
+        <if test="createTime != null">
+            and create_time=#{createTime}
+        </if>
+    </select>
+
+    <!--新增用户表-->
+    <insert id="insertUserInfo">
+        INSERT INTO user_info(id,name,create_time)
+        VALUES (#{id},#{name},#{createTime})
+    </insert>
+
+    <!--修改用户表-->
+    <update id="updateUserInfo">
+        UPDATE user_info SET name=#{name},create_time=#{createTime}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过ID删除单个用户表-->
+    <delete id="deleteUserInfoById">
+        DELETE FROM user_info
+        WHERE id=#{id}
+    </delete>
+
+</mapper>

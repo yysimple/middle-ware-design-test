@@ -2,12 +2,16 @@ package com.simple.pagination.controller;
 
 import javax.annotation.Resource;
 
+import com.simple.pagination.domain.UserInfoRequest;
 import com.simple.pagination.util.Page;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 
 import com.simple.pagination.domain.UserInfo;
 import com.simple.pagination.domain.SimpleResponse;
@@ -55,9 +59,16 @@ public class UserInfoController {
 
     @ApiOperation(value = "多条件分页查询UserInfo列表")
     @PostMapping("/pageUserInfos")
-    public SimpleResponse<Page<UserInfo>> pageUserInfos(@RequestBody UserInfo userInfo, Integer pageIndex, Integer pageSize) {
+    public SimpleResponse<Page<UserInfo>> pageUserInfos(@RequestBody UserInfoRequest userInfoRequest, Integer pageIndex, Integer pageSize) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        UserInfo userInfo = new UserInfo();
         userInfo.setPageIndex(pageIndex);
         userInfo.setPageSize(pageSize);
+        userInfo.setId(userInfoRequest.getId());
+        userInfo.setName(userInfoRequest.getName());
+        if (!Objects.isNull(userInfoRequest.getCreateTime())) {
+            userInfo.setCreateTime(dateFormat.parse(userInfoRequest.getCreateTime()));
+        }
         return new SimpleResponse<>(userInfoService.pageUserInfos(userInfo));
     }
 

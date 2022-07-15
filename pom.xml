@@ -11,6 +11,7 @@
     <modules>
         <module>pagination</module>
         <module>simple-schedule-test</module>
+        <module>zookeeper-test</module>
     </modules>
 
     <properties>

@@ -12,6 +12,7 @@
         <module>pagination</module>
         <module>simple-schedule-test</module>
         <module>zookeeper-test</module>
+        <module>dbrouter-test</module>
     </modules>
 
     <properties>

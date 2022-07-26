@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.simple.middle.test.dbrouter.mapper.SimpleUserTable001Mapper">
+
+    <resultMap id="simpleUserTable001Map" type="com.simple.middle.test.dbrouter.domain.SimpleUserTable001">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!--通过ID查询单个简单的用户表-->
+    <select id="findById" resultMap="simpleUserTable001Map">
+        SELECT id,name,age,sex,create_time,update_time FROM simple_user_table_001
+        WHERE id=#{id}
+    </select>
+
+</mapper>

@@ -42,6 +42,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.simple.dbrouter</groupId>
+                <artifactId>dbrouter-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>

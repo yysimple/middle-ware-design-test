@@ -1,6 +1,7 @@
 package com.simple.middle.test.dbrouter.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
 import com.simple.dbrouter.annotation.DBRouter;
 import com.simple.dbrouter.annotation.DbRouterStrategy;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,5 +23,6 @@ public interface SimpleUserTableMapper extends BaseMapper<SimpleUserTable> {
     @DBRouter(key = "id")
     int insertUser(SimpleUserTable simpleUserTable);
 
+    @DBRouter(key = "id")
     SimpleUserTable findById(@Param("id") Long id);
 }

@@ -29,12 +29,27 @@ public class DbRouterTest {
     public void insertTest() {
         SimpleUserTable simpleUserTable = new SimpleUserTable();
         for (long i = 1; i <= 5; i++) {
-            simpleUserTable.setId(11L + i);
+            simpleUserTable.setId(20L + i);
             simpleUserTable.setAge(10 + (int) i);
             simpleUserTable.setName("zz" + i);
             simpleUserTable.setSex((int) i / 2 == 0 ? "男" : "女");
             mapper.insertUser(simpleUserTable);
         }
+    }
+
+    @Test
+    public void insertOneTest() {
+        SimpleUserTable simpleUserTable = new SimpleUserTable();
+            simpleUserTable.setId(30L);
+            simpleUserTable.setAge(10);
+            simpleUserTable.setName("zzy");
+            simpleUserTable.setSex("男");
+            mapper.insertUser(simpleUserTable);
+    }
+
+    @Test
+    public void selectTest() {
+        System.out.println(mapper.findById(30L));
     }
 
 }

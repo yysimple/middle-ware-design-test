@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import com.simple.dbrouter.annotation.DBRouter;
 import com.simple.dbrouter.annotation.DbRouterStrategy;
+import com.simple.dbrouter.annotation.RouterParam;
+import com.simple.middle.test.dbrouter.test.ParamTest;
 import org.apache.ibatis.annotations.Mapper;
 import com.simple.middle.test.dbrouter.domain.SimpleUserTable;
 import org.apache.ibatis.annotations.Param;

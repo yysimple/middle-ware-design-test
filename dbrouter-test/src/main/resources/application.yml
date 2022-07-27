@@ -22,17 +22,17 @@ router:
         url: jdbc:mysql://127.0.0.1:3306/simple_user?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
-        password: 970412@wcx.com
+        password: 123456
       db01:
         url: jdbc:mysql://127.0.0.1:3306/simple_user_001?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
-        password: 970412@wcx.com
+        password: 123456
       db02:
         url: jdbc:mysql://127.0.0.1:3306/simple_user_002?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
-        password: 970412@wcx.com
+        password: 123456
 
 
 mybatis-plus:

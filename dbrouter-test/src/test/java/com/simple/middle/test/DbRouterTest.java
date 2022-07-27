@@ -40,7 +40,7 @@ public class DbRouterTest {
     @Test
     public void insertOneTest() {
         SimpleUserTable simpleUserTable = new SimpleUserTable();
-            simpleUserTable.setId(30L);
+            simpleUserTable.setId(10L);
             simpleUserTable.setAge(10);
             simpleUserTable.setName("zzy");
             simpleUserTable.setSex("男");
@@ -49,7 +49,7 @@ public class DbRouterTest {
 
     @Test
     public void selectTest() {
-        System.out.println(mapper.findById(30L));
+        System.out.println(mapper.findById(10L));
     }
 
 }

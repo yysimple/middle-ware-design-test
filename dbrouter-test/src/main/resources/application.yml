@@ -8,26 +8,31 @@ spring:
 router:
   jdbc:
     datasource:
+      # 分库的数量
       dbCount: 2
-      tbCount: 4
+      # 分表的数量
+      tbCount: 2
+      # 默认的数据源指向
       default: db00
+      # 兜底的routerKey，分表字段
       routerKey: id
+      # 参与分库的数据源前缀，这里的话数量是多少，就应该对应上面的dbCount数量，而且分库数量支持的范围是 00 ～ 99
       list: db01,db02
       db00:
         url: jdbc:mysql://127.0.0.1:3306/simple_user?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
-        password: 123456
+        password: 970412@wcx.com
       db01:
         url: jdbc:mysql://127.0.0.1:3306/simple_user_001?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
-        password: 123456
+        password: 970412@wcx.com
       db02:
         url: jdbc:mysql://127.0.0.1:3306/simple_user_002?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
-        password: 123456
+        password: 970412@wcx.com
 
 
 mybatis-plus:

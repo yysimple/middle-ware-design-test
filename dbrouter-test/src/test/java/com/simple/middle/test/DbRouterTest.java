@@ -1,8 +1,8 @@
 package com.simple.middle.test;
 
 import com.simple.middle.test.dbrouter.DbRouterApplication;
-import com.simple.middle.test.dbrouter.domain.SimpleUserTable001;
-import com.simple.middle.test.dbrouter.mapper.SimpleUserTable001Mapper;
+import com.simple.middle.test.dbrouter.domain.SimpleUserTable;
+import com.simple.middle.test.dbrouter.mapper.SimpleUserTableMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,17 +23,17 @@ import javax.annotation.Resource;
 public class DbRouterTest {
 
     @Resource
-    private SimpleUserTable001Mapper mapper;
+    private SimpleUserTableMapper mapper;
 
     @Test
     public void insertTest() {
-        SimpleUserTable001 simpleUserTable001 = new SimpleUserTable001();
-        for (long i = 0; i < 5; i++) {
-            simpleUserTable001.setId(i);
-            simpleUserTable001.setAge(10 + (int) i);
-            simpleUserTable001.setName("zz" + i);
-            simpleUserTable001.setSex((int) i / 2 == 0 ? "男" : "女");
-            mapper.insert(simpleUserTable001);
+        SimpleUserTable simpleUserTable = new SimpleUserTable();
+        for (long i = 1; i <= 5; i++) {
+            simpleUserTable.setId(11L + i);
+            simpleUserTable.setAge(10 + (int) i);
+            simpleUserTable.setName("zz" + i);
+            simpleUserTable.setSex((int) i / 2 == 0 ? "男" : "女");
+            mapper.insertUser(simpleUserTable);
         }
     }
 

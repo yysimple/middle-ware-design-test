@@ -12,7 +12,7 @@ import java.util.Date;
 * @create: 2022-07-26 23:11:26
 **/
 @Data
-public class SimpleUserTable001 {
+public class SimpleUserTable {
     /**
      * 主键
      */

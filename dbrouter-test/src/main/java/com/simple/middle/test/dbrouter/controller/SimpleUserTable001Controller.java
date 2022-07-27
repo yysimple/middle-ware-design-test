@@ -1,10 +1,6 @@
 package com.simple.middle.test.dbrouter.controller;
 
-import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
-import com.simple.middle.test.dbrouter.service.SimpleUserTable001Service;
-import com.simple.middle.test.dbrouter.domain.SimpleResponse;
-import com.simple.middle.test.dbrouter.domain.SimpleUserTable001;
 
 /**
 * 项目: middle-ware-design-test

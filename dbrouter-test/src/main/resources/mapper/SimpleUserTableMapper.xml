@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.simple.middle.test.dbrouter.mapper.SimpleUserTable001Mapper">
+<mapper namespace="com.simple.middle.test.dbrouter.mapper.SimpleUserTableMapper">
 
-    <resultMap id="simpleUserTable001Map" type="com.simple.middle.test.dbrouter.domain.SimpleUserTable001">
+    <resultMap id="simpleUserTable001Map" type="com.simple.middle.test.dbrouter.domain.SimpleUserTable">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="age" column="age"/>
@@ -11,10 +11,16 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
+    <insert id="insertUser">
+        insert into simple_user_table (id, `name`, age, sex)
+        values (#{id}, #{name}, #{age}, #{sex})
+    </insert>
+
     <!--通过ID查询单个简单的用户表-->
     <select id="findById" resultMap="simpleUserTable001Map">
-        SELECT id,name,age,sex,create_time,update_time FROM simple_user_table_001
-        WHERE id=#{id}
+        SELECT id, name, age, sex, create_time, update_time
+        FROM simple_user_table
+        WHERE id = #{id}
     </select>
 
 </mapper>

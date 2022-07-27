@@ -1,9 +1,11 @@
 package com.simple.middle.test.dbrouter.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.simple.dbrouter.annotation.DBRouter;
 import com.simple.dbrouter.annotation.DbRouterStrategy;
 import org.apache.ibatis.annotations.Mapper;
-import com.simple.middle.test.dbrouter.domain.SimpleUserTable001;
+import com.simple.middle.test.dbrouter.domain.SimpleUserTable;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * 项目: middle-ware-design-test
@@ -15,6 +17,10 @@ import com.simple.middle.test.dbrouter.domain.SimpleUserTable001;
 **/
 @Mapper
 @DbRouterStrategy(splitTable = true)
-public interface SimpleUserTable001Mapper extends BaseMapper<SimpleUserTable001> {
+public interface SimpleUserTableMapper extends BaseMapper<SimpleUserTable> {
 
+    @DBRouter(key = "id")
+    int insertUser(SimpleUserTable simpleUserTable);
+
+    SimpleUserTable findById(@Param("id") Long id);
 }

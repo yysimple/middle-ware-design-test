@@ -23,4 +23,16 @@
         WHERE id = #{id}
     </select>
 
+    <select id="findByTwo" resultType="com.simple.middle.test.dbrouter.domain.SimpleUserTable">
+        SELECT id, name, age, sex, create_time, update_time
+        FROM simple_user_table
+        WHERE id = #{id} and `name` = #{name}
+    </select>
+
+    <select id="findByObject" resultType="com.simple.middle.test.dbrouter.domain.SimpleUserTable">
+        SELECT id, name, age, sex, create_time, update_time
+        FROM simple_user_table
+        WHERE id = #{id}
+    </select>
+
 </mapper>

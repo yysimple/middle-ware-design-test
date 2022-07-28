@@ -40,16 +40,28 @@ public class DbRouterTest {
     @Test
     public void insertOneTest() {
         SimpleUserTable simpleUserTable = new SimpleUserTable();
-            simpleUserTable.setId(10L);
-            simpleUserTable.setAge(10);
-            simpleUserTable.setName("zzy");
-            simpleUserTable.setSex("男");
-            mapper.insertUser(simpleUserTable);
+        simpleUserTable.setId(40L);
+        simpleUserTable.setAge(10);
+        simpleUserTable.setName("zzy");
+        simpleUserTable.setSex("男");
+        mapper.insertUser(simpleUserTable);
     }
 
     @Test
     public void selectTest() {
-        System.out.println(mapper.findById(10L));
+        System.out.println(mapper.findById(40L));
+    }
+
+    @Test
+    public void selectTwoTest() {
+        System.out.println(mapper.findByTwo(40L, "zzy"));
+    }
+
+    @Test
+    public void selectObjectTest() {
+        SimpleUserTable simpleUserTable = new SimpleUserTable();
+        simpleUserTable.setId(10L);
+        System.out.println(mapper.findByObject(simpleUserTable));
     }
 
 }

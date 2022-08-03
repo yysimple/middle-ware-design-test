@@ -13,6 +13,7 @@
         <module>simple-schedule-test</module>
         <module>zookeeper-test</module>
         <module>dbrouter-test</module>
+        <module>kafka-test</module>
     </modules>
 
     <properties>

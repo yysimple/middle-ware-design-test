@@ -14,6 +14,7 @@
         <module>zookeeper-test</module>
         <module>dbrouter-test</module>
         <module>kafka-test</module>
+        <module>wx-test</module>
     </modules>
 
     <properties>

@@ -1,13 +1,18 @@
 package com.simple.middle.test.wx.mp.controller;
 
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
+import com.simple.middle.test.wx.mp.model.BehaviorMatter;
+import com.simple.middle.test.wx.mp.model.MessageTextEntity;
 import com.simple.middle.test.wx.mp.util.SignatureUtil;
+import com.simple.middle.test.wx.mp.util.XmlUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * 项目: middle-test
@@ -58,5 +63,43 @@ public class WechatController {
         return SignatureUtil.check(token, signature, timestamp, nonce);
     }
 
+    /**
+     * 此处是处理微信服务器的消息转发的
+     */
+    @PostMapping("/wx/checkCall")
+    public String post(@RequestBody String requestBody, @RequestParam("signature") String signature, @RequestParam("timestamp") String timestamp, @RequestParam("nonce") String nonce, @RequestParam("openid") String openid, @RequestParam(name = "encrypt_type", required = false) String encType, @RequestParam(name = "msg_signature", required = false) String msgSignature) {
+        try {
+            logger.info("接收微信公众号信息请求{}开始 {}", openid, requestBody);
+            MessageTextEntity message = XmlUtil.xmlToBean(requestBody, MessageTextEntity.class);
+            BehaviorMatter behaviorMatter = new BehaviorMatter();
+            behaviorMatter.setOpenId(openid);
+            behaviorMatter.setFromUserName(message.getFromUserName());
+            behaviorMatter.setMsgType(message.getMsgType());
+            behaviorMatter.setContent(StringUtils.isBlank(message.getContent()) ? null : message.getContent().trim());
+            behaviorMatter.setEvent(message.getEvent());
+            behaviorMatter.setCreateTime(new Date(Long.parseLong(message.getCreateTime()) * 1000L));
+            // 处理消息
+            logger.info("接收微信公众号信息请求，内容： {}", JSON.toJSONString(behaviorMatter));
+            BehaviorMatter sendMsg = new BehaviorMatter();
+            BeanUtils.copyProperties(behaviorMatter, sendMsg);
+            return send(sendMsg);
+        } catch (Exception e) {
+            logger.error("接收微信公众号信息请求{}失败 {}", openid, requestBody, e);
+            return "";
+        }
+    }
+
+    public String send(BehaviorMatter request) throws Exception {
+
+        //反馈信息[文本]
+        MessageTextEntity res = new MessageTextEntity();
+        res.setToUserName(request.getOpenId());
+        res.setFromUserName(res.getFromUserName());
+        res.setCreateTime(String.valueOf(System.currentTimeMillis() / 1000L));
+        res.setMsgType("text");
+        res.setContent("我接到你的消息了啦..");
+        logger.info("发送给用户的消息：{}", JSON.toJSONString(res));
+        return XmlUtil.beanToXml(res);
+    }
 
 }

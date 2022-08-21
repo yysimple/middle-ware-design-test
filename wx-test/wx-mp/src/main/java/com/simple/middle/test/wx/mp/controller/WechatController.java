@@ -71,6 +71,7 @@ public class WechatController {
         try {
             logger.info("接收微信公众号信息请求{}开始 {}", openid, requestBody);
             MessageTextEntity message = XmlUtil.xmlToBean(requestBody, MessageTextEntity.class);
+            logger.info("解析后的信息：{}", JSON.toJSONString(message));
             BehaviorMatter behaviorMatter = new BehaviorMatter();
             behaviorMatter.setOpenId(openid);
             behaviorMatter.setFromUserName(message.getFromUserName());
@@ -93,7 +94,7 @@ public class WechatController {
 
         //反馈信息[文本]
         MessageTextEntity res = new MessageTextEntity();
-        res.setToUserName(request.getOpenId());
+        res.setToUserName("gh_a017f8adf5a5");
         res.setFromUserName(res.getFromUserName());
         res.setCreateTime(String.valueOf(System.currentTimeMillis() / 1000L));
         res.setMsgType("text");

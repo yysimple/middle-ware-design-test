@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="1 seconds">
+    <!-- 作用域就是spring的上下文环境中，后面是服务名，defaultValue不填就可以了，之后就是打印对应的服务名 -->
+    <springProperty scope="context" name="applicationName" source="spring.application.name" defaultValue=""/>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!-- logstash远程主机 -->
+        <destination>192.168.206.100:4560</destination>
+        <!-- encoder必须配置,有多种可选 -->
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+    <!-- 日志输出级别 -->
+    <root level="info">
+        <appender-ref ref="stash" />
+    </root>
+</configuration>
